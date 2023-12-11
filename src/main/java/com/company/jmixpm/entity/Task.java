@@ -1,5 +1,7 @@
 package com.company.jmixpm.entity;
 
+import io.jmix.core.annotation.DeletedBy;
+import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -7,17 +9,22 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
-@JmixEntity
-@Table(name = "TASK_")
+@JmixEntity(annotatedPropertiesOnly = false)
+@Table(name = "TASK_", indexes = {
+        @Index(name = "IDX_TASK__PROJECT", columnList = "PROJECT_ID")
+})
 @Entity(name = "Task_")
 public class Task {
+
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
 
+    //    @JmixProperty
     @InstanceName
     @Column(name = "NAME", nullable = false)
     @NotNull
@@ -33,6 +40,66 @@ public class Task {
 
     @Column(name = "ESTIMATED_EFFORTS")
     private Integer estimatedEfforts;
+
+    @JoinColumn(name = "PROJECT_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Project project;
+
+    @Column(name = "LABEL")
+    private String label;
+
+    @Column(name = "IS_CLOSED", nullable = false)
+    @NotNull
+    private Boolean isClosed = false;
+
+    @DeletedBy
+    @Column(name = "DELETED_BY")
+    private String deletedBy;
+
+    @DeletedDate
+    @Column(name = "DELETED_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deletedDate;
+
+    public Boolean getIsClosed() {
+        return isClosed;
+    }
+
+    public void setIsClosed(Boolean isClosed) {
+        this.isClosed = isClosed;
+    }
+
+    public Date getDeletedDate() {
+        return deletedDate;
+    }
+
+    public void setDeletedDate(Date deletedDate) {
+        this.deletedDate = deletedDate;
+    }
+
+    public String getDeletedBy() {
+        return deletedBy;
+    }
+
+    public void setDeletedBy(String deletedBy) {
+        this.deletedBy = deletedBy;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     public Integer getEstimatedEfforts() {
         return estimatedEfforts;

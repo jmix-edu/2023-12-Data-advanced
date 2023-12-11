@@ -50,10 +50,12 @@
                 <column id="assignee"/>
                 <column id="startDate"/>
                 <column id="estimatedEfforts"/>
+                <column id="label"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
+                          visible="false"
+            >
                 <button id="createBtn" action="tasksTable.create"/>
                 <button id="editBtn" action="tasksTable.edit"/>
                 <button id="removeBtn" action="tasksTable.remove"/>
