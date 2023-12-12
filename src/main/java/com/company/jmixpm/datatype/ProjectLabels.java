@@ -1,5 +1,8 @@
 package com.company.jmixpm.datatype;
 
+import com.company.jmixpm.validation.ProjectLabelsSizeValidator;
+
+import javax.validation.Constraint;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;

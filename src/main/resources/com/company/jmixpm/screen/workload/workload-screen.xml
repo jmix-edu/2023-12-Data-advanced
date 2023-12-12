@@ -26,9 +26,12 @@
                height="100%" width="100%">
             <actions>
                 <action id="refresh" type="refresh"/>
+                <action id="workloadInfo" caption="msg://workloadInfo.caption"
+                        type="itemTracking"/>
             </actions>
             <buttonsPanel alwaysVisible="true">
                 <button id="workloadTableRefreshBtn" action="workloadTable.refresh"/>
+                <button id="workloadInfoBtn" action="workloadTable.workloadInfo"/>
             </buttonsPanel>
             <columns>
                 <column id="assignee" caption="msg://workloadTable.assignee"/>

@@ -8,6 +8,7 @@
             <fetchPlan extends="_base">
                 <property name="manager" fetchPlan="_base"/>
                 <property name="tasks" fetchPlan="_base"/>
+                <property name="owner" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
             <collection id="participantsDc" property="participants"/>
@@ -42,7 +43,14 @@
                     </actions>
                 </entityPicker>
                 <comboBox id="statusField" property="status"/>
-                <textArea id="labelsField" property="projectLabels" editable="false"/>
+                <field id="labelsField" property="projectLabels" editable="false"/>
+                <textField id="totalEstimatedEffortsField" property="totalEstimatedEfforts"/>
+                <entityPicker id="ownerField" property="owner">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
             </column>
         </form>
         <tabSheet id="tabSheet" width="100%">
@@ -96,6 +104,10 @@
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
+            <button id="commitWithBeanValidation"
+                    caption="msg://commitWithBeanValidation.caption"/>
+            <button id="performBeanValidationBtn"
+                    caption="msg://performBeanValidationBtn.caption"/>
         </hbox>
     </layout>
 </window>

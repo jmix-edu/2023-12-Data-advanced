@@ -51,6 +51,7 @@
                 <column id="startDate"/>
                 <column id="estimatedEfforts"/>
                 <column id="label"/>
+                <column id="supposedEndDate"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

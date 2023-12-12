@@ -6,9 +6,12 @@ import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.core.metamodel.datatype.DatatypeFormatter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -30,10 +33,12 @@ public class TimeEntry {
     private Task task;
 
     @NotNull
+    @Positive(message = "{msg://com.company.jmixpm.entity/TimeEntry.timeSpent.validation.Positive}")
     @Column(name = "TIME_SPENT", nullable = false)
     private Integer timeSpent;
 
     @NotNull
+    @PastOrPresent
     @Column(name = "ENTRY_DATE", nullable = false)
     private LocalDateTime entryDate;
 
@@ -42,6 +47,7 @@ public class TimeEntry {
     private User user;
 
     @Column(name = "DESCRIPTION")
+    @Length(min = 10, message = "{msg://com.company.jmixpm.entity/timeEntry.description.error}")
     @Lob
     private String description;
 

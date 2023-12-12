@@ -7,7 +7,6 @@
         <collection id="timeEntriesDc"
                     class="com.company.jmixpm.entity.TimeEntry">
             <fetchPlan extends="_base">
-                <property name="task" fetchPlan="_base"/>
                 <property name="user" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="timeEntriesDl">
