@@ -2,6 +2,8 @@ package com.company.jmixpm.screen.project;
 
 import com.company.jmixpm.app.ProjectsService;
 import com.company.jmixpm.datatype.ProjectLabels;
+import com.company.jmixpm.screen.user.UserBrowse;
+import io.jmix.audit.snapshot.EntitySnapshotManager;
 import io.jmix.core.validation.group.UiComponentChecks;
 import io.jmix.core.validation.group.UiCrossFieldChecks;
 import io.jmix.ui.Notifications;
@@ -35,7 +37,19 @@ public class ProjectEdit extends StandardEditor<Project> {
     private Notifications notifications;
     @Autowired
     private Validator validator;
+    @Autowired
+    private EntitySnapshotManager entitySnapshotManager;
 
+    @Subscribe
+    public void onAfterCommitChanges(final AfterCommitChangesEvent event) {
+        entitySnapshotManager.createSnapshot(getEditedEntity(), getEditedEntityContainer().getFetchPlan());
+    }
+
+
+    @Install(to = "usersTable.add", subject = "screenConfigurer")
+    private void usersTableAddScreenConfigurer(Screen screen) {
+        ((UserBrowse) screen).setFilterProject(getEditedEntity());
+    }
 
     @Subscribe
     public void onInitEntity(final InitEntityEvent<Project> event) {

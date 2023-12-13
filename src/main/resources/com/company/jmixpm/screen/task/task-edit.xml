@@ -9,6 +9,7 @@
                 <property name="assignee" fetchPlan="_base"/>
                 <property name="project">
                     <property name="projectLabels"/>
+                    <property name="owner" fetchPlan="_base"/>
                 </property>
             </fetchPlan>
             <loader/>

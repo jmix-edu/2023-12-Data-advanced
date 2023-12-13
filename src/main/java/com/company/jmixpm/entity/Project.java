@@ -8,6 +8,7 @@ import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.SystemLevel;
 import io.jmix.core.metamodel.annotation.*;
+import io.jmix.core.pessimisticlocking.PessimisticLock;
 import io.jmix.core.validation.group.UiCrossFieldChecks;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ import java.util.UUID;
 })
 @Entity
 @ValidDatesProject(groups = {UiCrossFieldChecks.class})
+@PessimisticLock(timeoutSec = 10)
 public class Project {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)

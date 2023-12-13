@@ -7,10 +7,11 @@
                   class="com.company.jmixpm.entity.Project">
             <fetchPlan extends="_base">
                 <property name="manager" fetchPlan="_base"/>
+                <property name="participants" fetchPlan="_base"/>
                 <property name="tasks" fetchPlan="_base"/>
                 <property name="owner" fetchPlan="_base"/>
             </fetchPlan>
-            <loader/>
+            <loader dynamicAttributes="true"/>
             <collection id="participantsDc" property="participants"/>
             <collection id="tasksDc" property="tasks"/>
         </instance>

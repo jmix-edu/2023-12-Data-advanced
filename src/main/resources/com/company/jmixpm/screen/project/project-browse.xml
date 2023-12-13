@@ -13,6 +13,7 @@
             <loader id="projectsDl">
                 <query>
                     <![CDATA[select e from Project e]]>
+<!--                where function('actual_efforts', e.id) > e.totalEstimatedEfforts]]>    synth function call-->
                 </query>
             </loader>
         </collection>
